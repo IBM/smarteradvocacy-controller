@@ -1,0 +1,25 @@
+<html><font face=\"verdana\">
+    <h1>Smarter Advocacy</h1>
+    <h2>Configuration of Campaign, get-data and build-report</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        displayJson:<br/>
+        <input id="displayJson" type="text" name="config" /><br />
+        <input type="submit" name="SubmitButton" value="Go"/>
+    </form>
+    <script>
+        var docJson={};
+        docJson = request({
+            method: "GET",
+            url: "http://datastore-default.apps.riffled.os.fyre.ibm.com/_utils/index.html#database/advocacy/a-smart-adv-control-config", 
+            Accept: "application/json",
+            json: true,
+            }, function (error, response, docJson) {
+            console.log("ENDED: doCall")
+            //return docJson
+        });
+        // get config from DB
+        //var newValue = "10";
+        document.getElementById("displayJson").value = docJson;
+    </script>
+</font></html>

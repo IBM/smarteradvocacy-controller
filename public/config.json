@@ -1,0 +1,32 @@
+{
+    "_id": "a-smart-adv-control-config",
+    "_rev": "7-fd7019cff6a0b8c0bf9cc077ab3d03e6",
+    "get-data-service": "http://smart-adv-get-data-default.apps.riffled.os.fyre.ibm.com/get-data",
+    "config": [
+      {
+        "Codewind": {
+          "get-data": [
+            {
+              "power": "ON",
+              "runMode": "production",
+              "node-schedule": "01 * * * *",
+              "getDataType": "EclipsePluginMarketplaceMetrics",
+              "uri": "https://marketplace.eclipse.org/content/codewind",
+              "uriHash": "group-metrics-tab",
+              "campaign": "Codewind"
+            },
+            {
+              "power": "ON",
+              "runMode": "production",
+              "node-schedule": "02 * * * *",
+              "getDataType": "VSCodePluginMarketplaceMetrics",
+              "uri": "https://marketplace.visualstudio.com/items",
+              "parm1Key": "itemName",
+              "parm1Value": "IBM.codewind",
+              "campaign": "Codewind"
+            }
+          ]
+        }
+      }
+    ]
+  }
