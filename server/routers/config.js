@@ -15,9 +15,19 @@ module.exports = (app) => {
   var configData = upload.fields([{ name: 'campaign', maxCount: 1 }]);
 
   router.get('/', function (req, res, next) {
+    //// START set up credentials ////////////
+    if ( process.env.CouchDbUsername && process.env.CouchDbPassword ) { // test and use environment var if it exists (production case)
+      var username=process.env.CouchDbUsername; console.log("--- couch username secret = "+username);
+      var password=process.env.CouchDbPassword; console.log("--- couch password secret = "+password);
+    } else if ( req.query.CouchDbUsername && req.query.CouchDbPassword ) { // test and use request parameter var if it exists (local dev case)
+      var username = req.query.CouchDbUsername; console.log("--- couch username request parameter = "+username);
+      var password = req.query.CouchDbPassword; console.log("--- couch password request parameter = "+password);
+    } else { // error case
+      console.log("ERROR - CouchDb access crendentials were not set");
+      res.send("ERROR - CouchDb access crendentials were not set");
+    }
+    //// ENDED set up credentials ////////////
 
-    var username = 'nikadmin';
-    var password = 'nikadmin';
     var urlToCall="http://" + username + ':' + password + "@datastore-default.apps.riffled.os.fyre.ibm.com/advocacy/A-smart-adv-control-config"
 
     function doCall(urlToCall, callback) {
